@@ -29,7 +29,7 @@ def run(window, width, height):
                 run = False
                 break
         draw(window, space, draw_options)
-        space.step()
+        space.step(dt)
         clock.tick(fps)
 
     pygame.quit()
