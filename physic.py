@@ -27,6 +27,7 @@ def run(window, width, height):
             if event.type == pygame.QUIT:
                 run = False
                 break
+        draw(window, space, draw_options)
         clock.tick(fps)
 
     pygame.quit()
