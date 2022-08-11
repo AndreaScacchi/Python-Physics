@@ -11,6 +11,7 @@ window = pygame.display.set_mode((WIDTH, HEIGHT))
 def draw(space, window, draw_options):
     window.fill("white")
     space.debug_draw(draw_options)
+    pygame.display.update()
 
 def run(window, width, height):
     run = True
@@ -28,7 +29,7 @@ def run(window, width, height):
             if event.type == pygame.QUIT:
                 run = False
                 break
-        draw(window, space, draw_options)
+        draw(space, window, draw_options)
         space.step(dt)
         clock.tick(fps)
 
