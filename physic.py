@@ -1,19 +1,25 @@
+# import libraries
 import pygame
 import pymunk
 import pymunk.pygame_util
 import math
 
+# initialize pygame
 pygame.init()
 
+# set the width and height of the window
 WIDTH, HEIGHT = 1000, 750
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 
+# define the calculate_distance function
 def calculate_distance(p1, p2):
     return math.sqrt((p2[1] - p1[1])**2 + (p2[0] - p1[0])**2)
 
+# define the calculate_angle function
 def calculate_angle(p1, p2):
     return math.atan2(p2[1] - p1[1], p2[0] - p1[0])
 
+# define the drw function
 def draw(space, window, draw_options, line):
     window.fill("white")
 
@@ -23,6 +29,7 @@ def draw(space, window, draw_options, line):
     space.debug_draw(draw_options)
     pygame.display.update()
 
+# define the create_boundaries function
 def create_boundaries(space, width, height):
     rects = [
         [(width/2, height - 10), (width, 20)],
@@ -39,6 +46,7 @@ def create_boundaries(space, width, height):
         shape.friction = 0.5
         space.add(body, shape)
 
+# define the create_structure function
 def create_structure(space, width, height):
     BROWN = (139, 69, 19, 100)
     rects = [
@@ -57,6 +65,7 @@ def create_structure(space, width, height):
         shape.friction = 0.4
         space.add(body, shape)
 
+# define the create_swinging_ball function
 def create_swinging_ball(space):
     rotation_center_body = pymunk.Body(body_type = pymunk.Body.STATIC)
     rotation_center_body.position = (300, 270)
@@ -73,6 +82,7 @@ def create_swinging_ball(space):
     rotation_center_joint = pymunk.PinJoint(body, rotation_center_body, (0, 0), (0, 0))
     space.add(circle, line, body, rotation_center_joint)
 
+# define the create_ball function
 def create_ball(space, radius, mass, pos):
     body = pymunk.Body(body_type = pymunk.Body.STATIC)
     body.position = pos
@@ -84,6 +94,7 @@ def create_ball(space, radius, mass, pos):
     space.add(body, shape)
     return shape
 
+# define the run function
 def run(window, width, height):
     run = True
     clock = pygame.time.Clock()
@@ -93,6 +104,7 @@ def run(window, width, height):
     space = pymunk.Space()
     space.gravity = (0, 981)
     
+    # call the functions
     create_boundaries(space, width, height)
     create_structure(space, width, height)
     create_swinging_ball(space)
@@ -102,6 +114,7 @@ def run(window, width, height):
     pressed_pos = None
     ball = None
 
+    # using while loop to check events and based on that call different functions to create ball, calculate angle, distance and so on
     while run:
         line = None
         if ball and pressed_pos:
@@ -132,7 +145,9 @@ def run(window, width, height):
         space.step(dt)
         clock.tick(fps)
 
+    # quit pygame
     pygame.quit()
 
+# boilerplate code
 if __name__ == "__main__":
     run(window, WIDTH, HEIGHT)
