@@ -19,3 +19,8 @@ def run(window, width, height):
                 run = False
                 break
         clock.tick(fps)
+
+    pygame.quit()
+
+if __name__ == "__main__":
+    run(window, WIDTH, HEIGHT)
