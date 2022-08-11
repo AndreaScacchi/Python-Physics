@@ -8,6 +8,10 @@ pygame.init()
 WIDTH, HEIGHT = 1000, 800
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 
+def draw(space, window, draw_options):
+    window.fill("white")
+    space.debug_draw(draw_options)
+
 def run(window, width, height):
     run = True
     clock = pygame.time.Clock()
@@ -15,6 +19,8 @@ def run(window, width, height):
 
     space = pymunk.Space()
     space.gravity = (0, 981)
+
+    draw_options = pymunk.pygame_util.DrawOptions(window)
 
     while run:
         for event in pygame.event.get():
