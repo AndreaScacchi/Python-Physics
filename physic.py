@@ -72,7 +72,12 @@ def run(window, width, height):
                 if not ball:
                     pressed_pos = pygame.mouse.get_pos()
                     ball = create_ball(space, 30, 10, pressed_pos)
-                #ball.body.apply_impulse_at_local_point((10000, 0), (0, 0))
+                elif pressed_pos:
+                    ball.body.apply_impulse_at_local_point((10000, 0), (0, 0))
+                    pressed_pos = None
+                else:
+                    space.remove(ball, ball.body)
+                    ball = None
 
         draw(space, window, draw_options)
         space.step(dt)
