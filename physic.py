@@ -14,7 +14,7 @@ def run(window, width, height):
     fps = 60
 
     space = pymunk.Space()
-    space.gravity(0, 981)
+    space.gravity = (0, 981)
 
     while run:
         for event in pygame.event.get():
