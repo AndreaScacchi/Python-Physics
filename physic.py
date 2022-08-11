@@ -16,6 +16,7 @@ def run(window, width, height):
     run = True
     clock = pygame.time.Clock()
     fps = 60
+    dt = 1 / fps
 
     space = pymunk.Space()
     space.gravity = (0, 981)
@@ -28,6 +29,7 @@ def run(window, width, height):
                 run = False
                 break
         draw(window, space, draw_options)
+        space.step()
         clock.tick(fps)
 
     pygame.quit()
