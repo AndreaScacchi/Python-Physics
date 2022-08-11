@@ -5,7 +5,7 @@ import math
 
 pygame.init()
 
-WIDTH, HEIGHT = 1000, 800
+WIDTH, HEIGHT = 1000, 700
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 
 def draw(space, window, draw_options):
