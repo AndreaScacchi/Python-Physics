@@ -30,6 +30,7 @@ def run(window, width, height):
 
     space = pymunk.Space()
     space.gravity = (0, 981)
+    ball = create_ball(space, 30, 10)
 
     draw_options = pymunk.pygame_util.DrawOptions(window)
 
