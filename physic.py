@@ -13,6 +13,9 @@ def run(window, width, height):
     clock = pygame.time.Clock()
     fps = 60
 
+    space = pymunk.Space()
+    space.gravity(0, 981)
+
     while run:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
